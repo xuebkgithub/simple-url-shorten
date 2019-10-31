@@ -99,12 +99,14 @@ simple-url-shorten是一个基于openresty的Lua模块和Redis模块开发的简
 	https://www.google.com/search?newwindow=1&biw=1600&bih=753&q=simple+url+shorten&oq=simple+url+shorten&gs_l=serp.3..0i19l5j0i30i19j0i5i30i19l4.17382489.17389081.0.17389560.18.18.0.0.0.0.418.2756.0j5j3j2j1.11.0.msedr...0...1c.1.60.serp..7.11.2753.th4LFd5J5uU
 
 进行网址缩短，只需进行GET方式请求即可：
-
-	Request:
-	http://XXX.com/short?url=https%3A%2f%2fwww.google.com%2fsearch%3Fnewwindow%3D1%26biw%3D1600%26bih%3D753%26q%3Dsimple%2burl%2bshorten%26oq%3Dsimple%2burl%2bshorten%26gs_l%3Dserp.3..0i19l5j0i30i19j0i5i30i19l4.17382489.17389081.0.17389560.18.18.0.0.0.0.418.2756.0j5j3j2j1.11.0.msedr...0...1c.1.60.serp..7.11.2753.th4LFd5J5uU
-
-	Response:
-	{"status":1,"shorturl":"http://XXX.com/Rqo3F"}
+	
+```bash
+curl -X "POST" "http://你的域名/short" \
+     -H 'Content-Type: application/json; charset=utf-8' \
+     -d $'{
+  "url": "https://www.baidu.com?sds=1323&sf=32323&dsfsfdsf=dfdsfds&wedssd=222"
+}'
+```
 
 访问过程：
 	Request：
