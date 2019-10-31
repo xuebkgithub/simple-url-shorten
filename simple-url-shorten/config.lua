@@ -39,7 +39,7 @@ redis['password'] = 'passwd'
 -- 14 ->  12401769434657526912139264
 -- 15 ->  768909704948766668552634368
 -- 16 ->  47672401706823533450263330816
-local start_url = {'0','0','0','0'}
+local start_url = {'0','0','0','0','0','0','0'}
 
 -- Short URL's prefix
 -- Default is NULL
@@ -66,6 +66,7 @@ err_msg[42] = 'URL is not allow to shorten'
 err_msg[51] = 'Database is out of service'
 err_msg[52] = 'Getting data error'
 err_msg[53] = 'Larger than maximum numbers of URLs'
+err_msg[54] = 'Database is passowd'
 
 M['base_table'] = base_table
 M['base_str'] = base_str

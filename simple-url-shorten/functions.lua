@@ -52,7 +52,7 @@ function M.redis_connect()
 	end
 	local res, err = red:auth(config['redis']['password'])
 	if not res then
-		return nil, 51
+		return nil, 54
 	end
 	return red
 end
@@ -99,7 +99,7 @@ function M.get_long_url(short_string)
 	if err then
 		return false, err
 	end
-	local result, err = red:get('S_' .. short_string)
+	local result, err = red:get('short:S_' .. short_string)
 	if err then
 		return nil, 52
 	end
@@ -129,7 +129,7 @@ function M.url_create(long_url, short_string)
 		return false, err
 	end
 	local url_md5 = ngx.md5(long_url)
-	local result, err = red:get('M_' .. url_md5)
+	local result, err = red:get('short:M_' .. url_md5)
 	if err then
 		return nil, 52
 	end
@@ -140,7 +140,7 @@ function M.url_create(long_url, short_string)
 	if err then
 		return nil, err
 	end
-	local last, err = red:get('V_last')
+	local last, err = red:get('short:V_last')
 	if err or last==ngx.NULL then
 		return nil, 52
 	end
@@ -148,9 +148,9 @@ function M.url_create(long_url, short_string)
 	if err then
 		return nil, err
 	end
-	red:set('M_' .. url_md5, short_string)
-	red:set('V_last', short_string)
-	red:set('S_' .. short_string, long_url)
+	red:set('short:M_' .. url_md5, short_string)
+	red:set('short:V_last', short_string)
+	red:set('short:S_' .. short_string, long_url)
 	red:set_keepalive(10000, 100)
 	return config['domain']..short_string
 end
